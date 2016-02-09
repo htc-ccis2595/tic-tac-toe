@@ -2,8 +2,10 @@ package edu.htc.tictactoe;
 
 public class TicTacToe {
 
-  public void playGame() {
-    
-  }
+  GameBoard board = new GameBoard();
+  Player player1 = new Player();
+  Player player2 = new Player();
 
+  public void playGame() {
+  }
 }
