@@ -6,6 +6,8 @@ public class Main {
 
         TicTacToe game = new TicTacToe();
         game.playGame();
+        Player player1 = new Player();;
+
 
     }
 }
