@@ -9,19 +9,21 @@ public class Player {
     String name;
     char gameMarker;
     int winCounter;
+    boolean isCurrentPlayer;
+    Scanner input = new Scanner(System.in);
 
      public static void main(String[] args){
 
         Player player = new Player();
 
-        player.testGetName();
+        player.testGetName(1);
         player.testGetMarker() ;
         player.testGetWinCount(0);
         player.testGetWinCount(1);
     }
 
-    public void testGetName(){
-        this.getName();
+    public void testGetName(int intPlayerNumber){
+        this.getName(intPlayerNumber);
     }
 
     public void testGetMarker(){
@@ -32,27 +34,36 @@ public class Player {
         this.getWinCount(intStart);
     }
 
-    public  void getName(){
+    public  void getName(int intPlayerNumber){
         String strName;
-        System.out.println("Player, please enter your name:");
-        Scanner input = new Scanner(System.in);
-        strName = input.nextLine();
-        this.name = strName;
-        System.out.println("Player name has been set to : " + this.name);
+        boolean blnValid;
 
+        do {
+                System.out.println("Player" + intPlayerNumber +", please enter your name:");
+                strName = input.nextLine();
+                this.name = strName;
+                System.out.println("Player" + intPlayerNumber +" name has been set to : " + this.name);
+                if (!this.name.isEmpty()) {
+                    blnValid = true;
+                } else {
+                    System.out.println("Player name cannot be blank1.  Please enter a player name.");
+                    blnValid = false;
+                }
+    } while (!blnValid);
     }
+
+
 
     public void getMarker(){
         String strMarker;
         char cMarker;
 
-        Scanner input = new Scanner(System.in);
         System.out.println("Enter either an X or an O to choose your game marker: ");
         strMarker = input.nextLine();
 
         cMarker = (strMarker.charAt(0));
         this.gameMarker = cMarker;
-        System.out.println("Player marker has been set to : " + this.gameMarker);
+        System.out.println(this.name + "Player marker has been set to : " + this.gameMarker);
     }
 
     public void getWinCount(int intStart){
@@ -68,23 +79,40 @@ public class Player {
 
     }
 
-    public int getMove(){
+    public int getMove(char cMarker){
         String strMove;
-        int intSquareChoice;
+        int intSquareChoice = 0;
+        Boolean blnValid;
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter a block to place your X in: ");
-        strMove = input.nextLine();
+        System.out.println(this.name+", please enter a block to place your " + cMarker + " in: ");
 
-        intSquareChoice = Integer.valueOf(strMove);
+        do {
+            strMove = input.nextLine();
+            if(strMove.isEmpty()){
+                System.out.println("Please enter a number..");
+            } else {
+                intSquareChoice = Integer.valueOf(strMove);
+            }
+            if (intSquareChoice > 0 & intSquareChoice <= 10){
+                blnValid = true;
+            } else {
+                System.out.println("Player move can only be numbers 1 through 9.  Please choose again.");
+                blnValid = false;
+            }
+        } while (!blnValid);
 
-        System.out.println("Player move has been set to : " + intSquareChoice);
+
+        System.out.println(this.name+"'s move has been set to : " + intSquareChoice);
 
         return intSquareChoice;
 
     }
 
     public void addWin(){
+
+        this.winCounter++;
+
+        return;
 
     }
 }

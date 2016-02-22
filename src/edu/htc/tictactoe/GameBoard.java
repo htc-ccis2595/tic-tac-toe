@@ -2,6 +2,8 @@ package edu.htc.tictactoe;
 
 import java.util.ArrayList;
 import java.lang.*;
+import java.util.Scanner;
+
 /**
  * Created by clifford.mauer on 2/8/2016.
  */
@@ -18,12 +20,13 @@ public class GameBoard {
     public GameBoard(){
         boardstatus = null;
     }
+    Scanner input = new Scanner(System.in);
 
     char[] board = new char[] {'1','2','3','4','5','6','7','8','9'};
 
     private int[][] winCombinations = new int[][] {
             {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, //horizontal wins
-            {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, //verticle wins
+            {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, //vertical wins
             {0, 4, 8}, {2, 4, 6}             //diagonal wins
     };
 
@@ -136,19 +139,39 @@ public class GameBoard {
 
             // check if the array matches the currentBoard array
             if( currentBoard[winCombinations[i][0]]==(currentBoard[winCombinations[i][1]]) &&
-                    currentBoard[winCombinations[i][1]]==(currentBoard[winCombinations[i][2]]))
-            {
+                    currentBoard[winCombinations[i][1]]==(currentBoard[winCombinations[i][2]])) {
                 isWon = true;
             }
-
+          }
+        // this is where we swap players if the game has not been won
+        if (Main.intCurrentPlayer == 1){
+            // swap to player2
+            Main.intCurrentPlayer = 2;
         }
+        else{
+            //swap to player1
+            Main.intCurrentPlayer = 1;
+        }
+
 
 
         return isWon;
 
     }
 
-    public void getOpenSquares(){
+    public int getOpenSquares(){
+
+        int intOpenSquares = 0;
+
+        for (int i = 0; i < 9; i++) {
+            if (getSquareValue(i)=='X' | getSquareValue(i)=='O' ){
+                // just ignore this area and don't do anything
+            } else {
+                intOpenSquares++;
+            }
+         }
+
+        return intOpenSquares;
 
     }
 
@@ -156,7 +179,7 @@ public class GameBoard {
 
         int SquareLocation = x;
 
-        if (getSquareValue(SquareLocation)=='X' | getSquareValue(SquareLocation)=='O' ){
+        if (getSquareValue(SquareLocation)=='X' || getSquareValue(SquareLocation)=='O' ){
 
             return false;
         } else {
@@ -168,7 +191,41 @@ public class GameBoard {
     public void updateSquare(int x, char c){
 
         // x is the location that is being chosen
-        int boardlocation = x-1;
+        // c is the character that will be placed in the square
+        int boardlocation ;
+        int i = 0;
+        int intSquareChoice;
+        String strMove;
+        Boolean blnValidInput;
+
+        do {
+            if (i > 0){
+                System.out.println("Square is already taken, please choose another.");
+                System.out.println("Enter a block to place your " + c + " in: ");
+                strMove = input.nextLine();
+                intSquareChoice = Integer.valueOf(strMove);
+                System.out.println("Player move has been set to : " + intSquareChoice);
+                boardlocation = intSquareChoice-1;
+                if (isSquareOpen(boardlocation)){
+                    blnValidInput = true;
+                }
+                else{
+                    blnValidInput = false;
+                }
+             }
+            else{
+                boardlocation = x-1;
+                if (isSquareOpen(boardlocation)){
+                    blnValidInput = true;
+                }
+                else{
+                    blnValidInput = false;
+                }
+            }
+
+            i++;
+        } while (!blnValidInput);
+
         board[boardlocation] = c;
 
         return;
