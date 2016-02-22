@@ -7,5 +7,10 @@ public class Main {
         TicTacToe game = new TicTacToe();
         game.playGame();
 
+        //"Class 'variable name' = new Class();"
+        GameBoard board = new GameBoard();
+        //'variable name'.method ()"
+        board.display();
+
     }
 }
