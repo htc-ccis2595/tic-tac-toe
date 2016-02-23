@@ -62,7 +62,7 @@ public class GameBoard {
         int[] openSqArray = new int[openSquares.size()];
         for (int i=0; i < openSqArray.length; i++)
         {
-            openSqArray[i] = openSquares.get(i).intValue();
+            openSqArray[i] = openSquares.get(i);
         }
         return openSqArray;
 
@@ -92,6 +92,17 @@ public class GameBoard {
             int testArray[] = testGameboard.getOpenSquares();
             System.out.println(testArray[p]);
         }
+        System.out.println("Testing isSquareOpen for square 4. Should be false.");
+        System.out.println(testGameboard.isSquareOpen(4));
+        System.out.println("Player changed 5 and 6 to x.");
+        testGameboard.updateSquare(5,'x');
+        testGameboard.updateSquare(6,'x');
+        testGameboard.display();
+        System.out.println("Game should now show as being won.");
+        System.out.println("True or False: this game has a winner. " + testGameboard.isGameWon('x') );
+
+
+
         }
 
 
