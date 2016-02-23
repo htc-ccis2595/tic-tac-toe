@@ -94,11 +94,13 @@ public class TicTacToe {
    if(playagain.equalsIgnoreCase("Yes")) {
      TicTacToe game = new TicTacToe(player1, player2);
 
-
-
      game.playGame();
 
    }
+    else if(!playagain.equalsIgnoreCase("Yes") && playagain.equalsIgnoreCase("No")) {
+      System.out.println("Thanks for playing!");
+    }
+
 
   }
 

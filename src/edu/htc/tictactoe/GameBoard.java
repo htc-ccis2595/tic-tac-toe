@@ -28,10 +28,10 @@ public class GameBoard {
     public GameBoard(char[] board) {
         this.chBoard = board;
         openSquares = new ArrayList();
-        for(int i = 0; i < board.length; i++) {
+        for (int i = 0; i < board.length; i++) {
             char c = board[i];
-            if (c != 'X' &&  c!= 'O') {
-                openSquares.add(i+1);
+            if (c != 'X' && c != 'O') {
+                openSquares.add(i + 1);
             }
         }
     }
@@ -42,7 +42,7 @@ public class GameBoard {
 
     public char getSquareValue(int x) {
 
-        return chBoard[x-1];
+        return chBoard[x - 1];
 
     }
 
@@ -51,50 +51,46 @@ public class GameBoard {
         System.out.println();
         System.out.println();
         System.out.println("+-+---+---+");
-        System.out.println(chBoard[0] + " | "+ chBoard[1] + " | " + chBoard[2]+ " |");
+        System.out.println(chBoard[0] + " | " + chBoard[1] + " | " + chBoard[2] + " |");
         System.out.println("+-+---+---+");
-        System.out.println(chBoard[3] + " | "+ chBoard[4] + " | " + chBoard[5]+ " |");
+        System.out.println(chBoard[3] + " | " + chBoard[4] + " | " + chBoard[5] + " |");
         System.out.println("+-+---+---+");
-        System.out.println(chBoard[6] + " | "+ chBoard[7] + " | " + chBoard[8]+ " |");
+        System.out.println(chBoard[6] + " | " + chBoard[7] + " | " + chBoard[8] + " |");
         System.out.println("+-+---+---+");
 
     }
 
     public void updateSquare(int update, char marker) {
-        chBoard[update-1] = marker;
-        openSquares.remove(new Integer (update));
+        chBoard[update - 1] = marker;
+        openSquares.remove(new Integer(update));
     }
 
 
-
-
-    public boolean isGameWon () {
+    public boolean isGameWon() {
         boolean gameWon = false;
         int i;
-        for(i=0; i < winCombinations.length; i++) {
+        for (i = 0; i < winCombinations.length; i++) {
             int[] possiblewin = winCombinations[i];
 
-                int squarenum = possiblewin[0];
-                char squarevalue = chBoard[squarenum-1];
-                int squarenum2 = possiblewin[1];
-                char squarevalue2 = chBoard[squarenum2-1];
-                int squarenum3 = possiblewin[2];
-                char squarevalue3 = chBoard[squarenum3-1];
-                if (squarevalue == squarevalue2 && squarevalue2 == squarevalue3) {
-                    gameWon = true;
-                    break;
-                }
+            int squarenum = possiblewin[0];
+            char squarevalue = chBoard[squarenum - 1];
+            int squarenum2 = possiblewin[1];
+            char squarevalue2 = chBoard[squarenum2 - 1];
+            int squarenum3 = possiblewin[2];
+            char squarevalue3 = chBoard[squarenum3 - 1];
+            if (squarevalue == squarevalue2 && squarevalue2 == squarevalue3) {
+                gameWon = true;
+                break;
+            }
         }
         return gameWon;
     }
 
-    public boolean isSquareOpen(int x){
-        if( chBoard[x - 1] == 'X' || chBoard[x-1] == 'O'){
+    public boolean isSquareOpen(int x) {
+        if (chBoard[x - 1] == 'X' || chBoard[x - 1] == 'O') {
             return false;
-        }
-
-        else {
-             return true;
+        } else {
+            return true;
         }
 
     }
@@ -105,7 +101,7 @@ public class GameBoard {
         char[] testboard = new char[]{'1', 'X', 'X', '4', '5', 'O', '7', 'O', '9'};
         GameBoard testGB = new GameBoard(testboard);
         int[] openSquares = testGB.getOpenSquares();
-        for(int x : openSquares) {
+        for (int x : openSquares) {
             System.out.println("Open square #: " + x);
         }
         System.out.println("No one has won: ");
@@ -115,7 +111,7 @@ public class GameBoard {
         System.out.println("Were updating square 9 with O. ");
         testGB.updateSquare(9, 'O');
         openSquares = testGB.getOpenSquares();
-        for(int x : openSquares) {
+        for (int x : openSquares) {
             System.out.println("Open square #: " + x);
         }
         testGB.display();
@@ -130,7 +126,7 @@ public class GameBoard {
         System.out.println(testGB.isGameWon());
 
         //testing for open squares
-        testboard = new char[] {'1', '2', 'X', '4', '5', '6', '7', '8', '9'};
+        testboard = new char[]{'1', '2', 'X', '4', '5', '6', '7', '8', '9'};
         testGB = new GameBoard(testboard);
         testGB.display();
         System.out.println("Is square 1 open? " + testGB.isSquareOpen(1));
@@ -141,14 +137,7 @@ public class GameBoard {
         System.out.println("What is the value of square 9: " + testGB.getSquareValue(8));
 
 
-
     }
-
-
-
-
-
-
 
 
 }
