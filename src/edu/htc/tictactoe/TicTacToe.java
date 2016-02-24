@@ -6,70 +6,118 @@ public class TicTacToe {
     private GameBoard board;
     private Player player1;
     private Player player2;
+    private Scanner scanner = new Scanner(System.in);
 
     public TicTacToe(){
         this.board = new GameBoard();
     }
 
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
+    }
+
     public static void main(String args[]){
+        Scanner scanner = new Scanner(System.in);
+        String player1Name = "";
+        String player1Marker = " ";
+        while(player1Name.length() <= 0) {
+            System.out.println("Player 1 Please Enter your Name: ");
+            player1Name = scanner.next();
+            if(player1Name.length() > 0) {
+                 while (player1Marker.charAt(0) != 'X' && player1Marker.charAt(0) != 'O') {
+                    System.out.println(player1Name + " Please Enter your Marker (X or O): ");
+                    player1Marker = scanner.next();
+                    if (player1Marker.charAt(0) == 'X' || player1Marker.charAt(0) == 'O') {
+                        System.out.println(player1Name + " Your marker is " + player1Marker.charAt(0));
+                    }
+                }
+            }
+        }
+        Player player1 = new Player(player1Name, player1Marker.charAt(0));
+
+        String player2Name = "";
+        String player2Marker = "O";
+        while (player2Name.length() <= 0){
+            System.out.println("Player 2 Please Enter your Name : ");
+            player2Name = scanner.next();
+            if (player2Name.length() > 0){
+                if (player1Marker.charAt(0) == 'O'){
+                    player2Marker = "X";
+                }
+                System.out.println(player2Name + " Your Marker is " + player2Marker);
+            }
+        }
+        Player player2 = new Player(player2Name, player2Marker.charAt(0));
         TicTacToe ticTacToe = new TicTacToe();
-        ticTacToe.playGame();
+        ticTacToe.playGame(player1, player2);
     }
 
 
+    public void playGame(Player player1, Player player2) {
 
-    public void playGame() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Player 1 Please Enter your Name: ");
-        String player1Name = scanner.next();
-        System.out.println("Player 1 Please Enter your Marker (X or O): ");
-        String player1Marker = scanner.next();
-        player1 = new Player(player1Name, player1Marker.charAt(0));
-
-        System.out.println("Player 2 Please Enter your Name: ");
-        String player2Name = scanner.next();
-        System.out.println("Player 2 Please Enter your Marker (X or O): ");
-        String player2Marker = scanner.next();
-        player2 = new Player(player2Name, player2Marker.charAt(0));
-        int counter = 0;
-        //while (true)
-        //{
-            Player firstPlayer;
-            Player secondPlayer;
-            if(counter%2 == 0) {
-                firstPlayer = player1;
-                secondPlayer = player2;
-            }
-            else {
-                firstPlayer = player2;
-                secondPlayer = player1;
-            }
-            counter++;
-
-
-            //start the game
-            while (!board.isGameWon())
-            {
+        while (!board.isGameWon()) {
                 board.display();
-                board.updateSquare(firstPlayer.getMove(), firstPlayer.getMarker());
+                int square = player1.getMove();
+                while(!board.isSquareOpen(square))
+                {
+                    System.out.println("The square you picked is not available");
+                    System.out.println("The available squares are ");
+                    int openSquares[] = board.getOpenSquares();
+                    for (int i=0; i < openSquares.length; i++)
+                    {
+                        System.out.println(openSquares[i]);
+                    }
+                    square = player1.getMove();
+                }
+                board.updateSquare(square, player1.getMarker());
 
-                if(!board.isGameWon()) {
-                    board.updateSquare(secondPlayer.getMove(), secondPlayer.getMarker());
-                    if(board.isGameWon()) {
-                        System.out.println(secondPlayer.getName() + " Won!");
+                if (!board.isGameWon()) {
+                    square = player2.getMove();
+                    while(!board.isSquareOpen(square))
+                    {
+                        System.out.println("The square you picked is not available");
+                        System.out.println("The available squares are ");
+                        int openSquares[] = board.getOpenSquares();
+                        for (int i=0; i < openSquares.length; i++)
+                        {
+                            System.out.println(openSquares[i]);
+                        }
+                        square = player2.getMove();
+                    }
+                    board.updateSquare(square, player2.getMarker());
+                    if (board.isGameWon()) {
+                        System.out.println(player2.getName() + " Won!");
 
-                        System.out.println("Win Count = " + secondPlayer.addWin());
+                        System.out.println("Win Count of " + player2.getName() + " is " + player2.addWin());
                         break;
                     }
-                }
-                else
-                {
-                    System.out.println(firstPlayer.getName() + " Won!");
-                    System.out.println("Win Count = " + firstPlayer.addWin());
+                } else {
+                    System.out.println(player1.getName() + " Won!");
+                    System.out.println("Win Count of " + player1.getName() + " is "+ player1.addWin());
                     break;
                 }
+
             }
-        //}
+        String playAgain;
+        System.out.println("Do you want to play again? (Yes/No) ");
+        playAgain = scanner.next();
+        if (playAgain.equalsIgnoreCase("Yes")){
+            TicTacToe gameAgain = new TicTacToe();
+            gameAgain.playGame(player1,player2);
+        }
+
     }
 
 }

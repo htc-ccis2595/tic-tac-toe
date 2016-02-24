@@ -1,6 +1,5 @@
 package edu.htc.tictactoe;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -28,7 +27,7 @@ public class Player {
         Scanner scanner = new Scanner(System.in);
         int square = 0;
         while(true) {
-            System.out.println("What square do you want to play?(1-9)");
+            System.out.println("What square do you want to play " + getName() + "?");
             square = scanner.nextInt();
             if (square >= 1 && square <= 9) {
                 return square;
