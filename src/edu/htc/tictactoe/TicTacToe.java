@@ -1,5 +1,9 @@
 package edu.htc.tictactoe;
 
+import edu.htc.tictactoe.player.ComputerPlayer;
+import edu.htc.tictactoe.player.HumanPlayer;
+import edu.htc.tictactoe.player.Player;
+
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -28,8 +32,15 @@ public class TicTacToe {
         this.player2 = player2;
     }
 
+    public GameBoard getBoard() {
+        return board;
+    }
+
     public static void main(String args[]){
+        TicTacToe ticTacToe = new TicTacToe();
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Will there be two players?(Y/N)");
+        String isTwoPlayers = scanner.next();
         String player1Name = "";
         String player1Marker = " ";
         while(player1Name.length() <= 0) {
@@ -45,22 +56,31 @@ public class TicTacToe {
                 }
             }
         }
-        Player player1 = new Player(player1Name, player1Marker.charAt(0));
+        Player player1 = new HumanPlayer(player1Name, player1Marker.charAt(0));
+
+
+        Player player2;
+        String player2Marker = "O";
+        if (player1Marker.charAt(0) == 'O'){
+            player2Marker = "X";
+        }
+        if(isTwoPlayers.equalsIgnoreCase("Y")){
+
 
         String player2Name = "";
-        String player2Marker = "O";
+
         while (player2Name.length() <= 0){
             System.out.println("Player 2 Please Enter your Name : ");
             player2Name = scanner.next();
             if (player2Name.length() > 0){
-                if (player1Marker.charAt(0) == 'O'){
-                    player2Marker = "X";
-                }
                 System.out.println(player2Name + " Your Marker is " + player2Marker);
             }
         }
-        Player player2 = new Player(player2Name, player2Marker.charAt(0));
-        TicTacToe ticTacToe = new TicTacToe();
+        player2 = new HumanPlayer(player2Name, player2Marker.charAt(0));
+        }
+        else {
+            player2 = new ComputerPlayer("Computer", player2Marker.charAt(0), ticTacToe.getBoard());
+        }
         ticTacToe.playGame(player1, player2);
     }
 

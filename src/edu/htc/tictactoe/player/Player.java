@@ -1,14 +1,14 @@
-package edu.htc.tictactoe;
+package edu.htc.tictactoe.player;
 
-import java.util.Scanner;
+
 
 /**
  * Created by Owner on 2/21/2016.
  */
-public class Player {
-    private String name;
-    private char gameMarker;
-    private int winCounter = 0;
+public abstract class  Player {
+    protected String name;
+    protected char gameMarker;
+    protected int winCounter = 0;
 
     //Constructor for player name and game Marker
     public Player(String name, char gameMarker) {
@@ -22,22 +22,6 @@ public class Player {
         return winCounter;
     }
 
-    //method to get the square that the player wants to play in
-    public int getMove(){
-        Scanner scanner = new Scanner(System.in);
-        int square = 0;
-        while(true) {
-            System.out.println("What square do you want to play " + getName() + "?");
-            square = scanner.nextInt();
-            if (square >= 1 && square <= 9) {
-                return square;
-            } else {
-                System.out.println("Invalid entry:");
-            }
-        }
-    }
-
-
     // Getter method for player name
     public String getName(){
         return name;
@@ -48,9 +32,10 @@ public class Player {
         return gameMarker;
     }
 
+    public abstract int  getMove();
     //Test method
     public static void main(String args[]){
-        Player player = new Player("Player1",'X');
+        Player player = new HumanPlayer("Player1",'X');
         int square = player.getMove();
         System.out.println("You picked square : " + square);
         int winCounter = player.addWin();
