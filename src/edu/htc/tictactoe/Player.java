@@ -38,22 +38,21 @@ public class Player {
         this.gameMarker = gameMarker;
     }
 
-    public int getMove(){
+    public int getMove() {
         Scanner scanner = new Scanner(System.in);
         int square = 0;
-        while(true){
+        while (true) {
+            System.out.println();
             System.out.println("Choose the box you want to play? ");
             square = scanner.nextInt();
-            if(square >=1 && square <= 9){
+            if (square >= 1 && square <= 9) {
                 return square;
-            }else {
+            } else {
                 System.out.println("Entry is not Valid! choose between (1-9)");
             }
         }
-
-
-
     }
+
 
 
 }
