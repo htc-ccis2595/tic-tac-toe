@@ -1,10 +1,10 @@
-package edu.htc.tictactoe;
+package edu.htc.tictactoe.player;
 import java.util.Scanner;
 
 /**
  * Created by volkg_000 on 2/8/2016.
  */
-public class Player {
+public abstract class Player {
     private String name; //instance variables
     private char marker;
     private int winCounter;
@@ -29,25 +29,18 @@ public class Player {
         this.winCounter = 0;
 
     }
+
     //method to incrememnt win count
     public int addWin() {
         return winCounter ++;
 
     }
     //method that asks player what spot on the board they would like to move to
-    public int getMove() {
-        System.out.println("Hello user, enter a number between 1 and 9 to play your marker: ");
-        int pos = scanner.nextInt();
-        while(pos > 9 || pos < 1) {
-            System.out.println("You dingus, type a number greater than 1 and less than 9!");
-            pos = scanner.nextInt();
-        }
+    public abstract int getMove();
 
-        return pos;
-    }
     public static void main(String args[]) {
-        Player mary = new Player("mary", 'X');
-        Player jordan = new Player("jordan", 'O');
+        Player mary = new HumanPlayer("mary", 'X');
+        Player jordan = new HumanPlayer("jordan", 'O');
         //player 1
         System.out.println("Player 1's name: " + mary.getName());
         System.out.println("Mary's Marker: " + mary.getMarker());
