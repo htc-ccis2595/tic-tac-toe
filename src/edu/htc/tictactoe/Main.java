@@ -21,9 +21,9 @@ public class Main {
 
          System.out.println("Would you like to play again? Enter Y for yes or N for No. ");
         strAnswer = input.nextLine();
-        cAnswer = (strAnswer.charAt(0));
+        //cAnswer = (strAnswer.charAt(0));
 
-        } while (cAnswer == 'Y');
+        } while (strAnswer.equalsIgnoreCase("Y"));
 
         //Play is finished so now we can display the Game Report
 

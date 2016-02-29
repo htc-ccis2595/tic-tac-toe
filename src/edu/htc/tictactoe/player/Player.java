@@ -1,22 +1,22 @@
-package edu.htc.tictactoe;
+package edu.htc.tictactoe.player;
 
 import java.util.Scanner;
 
 /**
  * Created by clifford.mauer on 2/8/2016.
  */
-public class Player {
-    String name;
+public abstract class Player {
+    public String name;
     char gameMarker;
-    int winCounter;
-    boolean isCurrentPlayer;
+    public int winCounter;
+    public boolean isCurrentPlayer;
     Scanner input = new Scanner(System.in);
 
      public static void main(String[] args){
 
-        Player player = new Player();
+        Player player = new HumanPlayer();
 
-        player.testGetName(1);
+         player.testGetName(1);
         player.testGetMarker() ;
         player.testGetWinCount(0);
         player.testGetWinCount(1);
@@ -66,6 +66,8 @@ public class Player {
         System.out.println(this.name + "Player marker has been set to : " + this.gameMarker);
     }
 
+    public abstract int getMove(char cMarker);
+
     public void getWinCount(int intStart){
 
         if (intStart == 0){
@@ -79,34 +81,6 @@ public class Player {
 
     }
 
-    public int getMove(char cMarker){
-        String strMove;
-        int intSquareChoice = 0;
-        Boolean blnValid;
-
-        System.out.println(this.name+", please enter a block to place your " + cMarker + " in: ");
-
-        do {
-            strMove = input.nextLine();
-            if(strMove.isEmpty()){
-                System.out.println("Please enter a number..");
-            } else {
-                intSquareChoice = Integer.valueOf(strMove);
-            }
-            if (intSquareChoice > 0 & intSquareChoice <= 10){
-                blnValid = true;
-            } else {
-                System.out.println("Player move can only be numbers 1 through 9.  Please choose again.");
-                blnValid = false;
-            }
-        } while (!blnValid);
-
-
-        System.out.println(this.name+"'s move has been set to : " + intSquareChoice);
-
-        return intSquareChoice;
-
-    }
 
     public void addWin(){
 
