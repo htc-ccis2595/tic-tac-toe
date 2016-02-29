@@ -7,10 +7,10 @@ import java.util.Scanner;
 /**
  * Created by cheey on 2/9/2016.
  */
-public class Player {
+public abstract class Player {
 
-    private String Name; //constructor , setter&getter
-    private char gameMarker; //""
+    private String Name;
+    private char gameMarker;
     private int winCounter;
 
     public Player (String name, char gameMarker)
@@ -58,21 +58,21 @@ public class Player {
         return winCounter;
     }
 
-    public int getMove()
-    {
-
-        System.out.print( "Which square would you like to pick?");
-        String getMoveInt = scanner.next();
-        Integer getMove = Integer.parseInt(getMoveInt);
-
-        while (getMove < 1 || getMove > 9) {
-            getMove = getMove;
-            System.out.print("Pick a square: 1 through 9");
-             getMoveInt = scanner.next();
-             getMove = Integer.parseInt(getMoveInt);
-        }
-        return getMove;
-    }
+    public abstract int getMove();
+//    {
+//
+//        System.out.print("Which square would you like to pick?");
+//        String getMoveInt = scanner.next();
+//        Integer getMove = Integer.parseInt(getMoveInt);
+//
+//        while (getMove < 1 || getMove > 9) {
+//            getMove = getMove;
+//            System.out.print("Pick a square: 1 through 9");
+//             getMoveInt = scanner.next();
+//             getMove = Integer.parseInt(getMoveInt);
+//        }
+//        return getMove;
+//    }
 
     public int addWin()
     {
@@ -82,11 +82,11 @@ public class Player {
     }
 
     public static void main(String[] args) {
-
-        Player player1 = new Player("Chee", 'X');
-        int move = player1.getMove();
-        System.out.println("Picked" + move);
-        player1.getMove();
+//
+//        Player player1 = new Player("Chee", 'X');
+//        int move = player1.getMove();
+//        System.out.println("Picked" + move);
+//        player1.getMove();
 
     }
 

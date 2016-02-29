@@ -2,6 +2,9 @@ package edu.htc.tictactoe;
 
 import java.util.Scanner;
 import edu.htc.tictactoe.player.*;
+import edu.htc.tictactoe.Strategy.*;
+
+
 public class TicTacToe {
 
     Player player1;
@@ -9,9 +12,6 @@ public class TicTacToe {
 
     GameBoard game;
     Scanner scanner = new Scanner(System.in);
-
-
-
 
 public TicTacToe()
 {
@@ -29,7 +29,7 @@ public TicTacToe()
       //char gameMarker = gameMarkerStr.charAt(0);
       char gameMarker = 'X';
 
-      player1 = new Player(Name, gameMarker);
+      player1 = new HumanPlayer(Name, gameMarker);
 
 
 
@@ -42,7 +42,7 @@ public TicTacToe()
 //      char gameMarker2 = gameMarkerStr2.charAt(0);
       char gameMarker2 = 'O';
 
-      player2 = new Player(Name2, gameMarker2);
+      player2 = new HumanPlayer(Name2, gameMarker2);
 
       while (game.isGameWon() == false) {
           //PLAYER1 PROMPT
@@ -54,8 +54,10 @@ public TicTacToe()
           }
 
           if (game.isGameWon() == true) {
-              System.out.println("Winner!");
+              System.out.println(Name + " is the winner!");
+              player1.addWin();
           }
+
           else {
 
               System.out.println("Updated Board");
@@ -69,9 +71,11 @@ public TicTacToe()
               }
 
               if (game.isGameWon() == true) {
-                  System.out.println("Winner!");
+                  System.out.println(Name2 +  " is the winner!");
+                  player2.addWin();
               }
               System.out.println("Updated Board");
+
           }
       }
 
