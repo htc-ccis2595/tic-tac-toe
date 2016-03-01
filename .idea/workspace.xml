@@ -61,8 +61,8 @@
       <file leaf-file-name="TicTacToeStrategy.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/htc/tictactoe/strategy/TicTacToeStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8643216">
-              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.7964824">
+              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#303#304#0" expanded="true" />
@@ -767,12 +767,12 @@
       <workItem from="1456186337510" duration="1455000" />
       <workItem from="1456194599136" duration="1181000" />
       <workItem from="1456693238015" duration="37000" />
-      <workItem from="1456693429544" duration="26035000" />
+      <workItem from="1456693429544" duration="26355000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39644000" />
+    <option name="totallyTimeSpent" value="39964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1090,8 +1090,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/htc/tictactoe/strategy/TicTacToeStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8643216">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.7964824">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#303#304#0" expanded="true" />

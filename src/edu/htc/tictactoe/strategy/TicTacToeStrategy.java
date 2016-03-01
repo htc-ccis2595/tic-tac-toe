@@ -17,7 +17,7 @@ public abstract class TicTacToeStrategy {
         this.board = board;
     }
 
-    
+    //abstract class
 
 
     public int getRandomMove() {
