@@ -58,11 +58,11 @@ public class Player {
     }
 
     //Test
-    public static void main(String[] Args){
+    /*public static void main(String[] Args){
         Player testPlayer = new Player("Tim", 'x');
         System.out.println(testPlayer.name + " has won "+ testPlayer.getWinCounter() + " games.");
         testPlayer.addwin();
         System.out.println(testPlayer.name + " has won a game as marker " + testPlayer.getMarker() +". He has won a total of " + testPlayer.winCounter + " games.");
-    }
+    }*/
 
 }

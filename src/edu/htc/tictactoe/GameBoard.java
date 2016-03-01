@@ -70,7 +70,7 @@ public class GameBoard {
 
 
 
-    public static void main(String[] Args){
+   /* public static void main(String[] Args){
         char testboard[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         GameBoard testGameboard= new GameBoard(testboard);
         testGameboard.display();
@@ -103,7 +103,7 @@ public class GameBoard {
 
 
 
-        }
+        }*/
 
 
 
