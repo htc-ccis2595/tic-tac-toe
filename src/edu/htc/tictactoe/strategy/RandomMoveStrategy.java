@@ -9,4 +9,8 @@ import edu.htc.tictactoe.GameBoard;
 public class RandomMoveStrategy extends TicTacToeStrategy {
    private GameBoard board;
 
+    public RandomMoveStrategy(GameBoard board){
+        super(board);
+    }
+
 }

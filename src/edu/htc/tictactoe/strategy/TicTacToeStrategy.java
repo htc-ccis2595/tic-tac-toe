@@ -9,15 +9,22 @@ import java.util.Random;
  * Created by Manimal on 2/28/2016.
  */
 
-public class TicTacToeStrategy {
+public abstract class TicTacToeStrategy {
     private Random random=new Random();
     private GameBoard board;
 
-
-    public Random getRandomMove(){
-        board.getOpenSquares()=random.nextInt(9)+1;
+    public TicTacToeStrategy(GameBoard board){
+        this.board = board;
     }
 
+    
+
+
+    public int getRandomMove() {
+        int array[] = board.getOpenSquares();
+        int position = random.nextInt(array.length);
+        return array[position];
+    }
 
 
 

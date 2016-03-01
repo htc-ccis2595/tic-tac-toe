@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class TicTacToe {
-    private Scanner scanner = new Scanner(System.in);;
+    private Scanner scanner = new Scanner(System.in);
     private Player player1;
     private Player player2;
     private GameBoard board;
