@@ -66,6 +66,9 @@ public class GameBoard{
         }
         return true;
     }
+    public char getsquareValue(int boardNum){
+        return board[boardNum-1];
+    }
 
     public static void main(String[] args){
         GameBoard emptyGameBoard=new GameBoard();
@@ -76,7 +79,7 @@ public class GameBoard{
         testGameBoard.display();
         testGameBoard.updateSquare(9,'X');
         testGameBoard.display();
-        System.out.println("game shouldnt be won " + testGameBoard.isGameWon());
+        System.out.println("game shouldn't be won " + testGameBoard.isGameWon());
         testGameBoard.updateSquare(4,'X');
         testGameBoard.display();
         System.out.println("game should be won " + testGameBoard.isGameWon());
