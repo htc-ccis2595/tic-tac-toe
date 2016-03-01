@@ -51,7 +51,7 @@ public class GameBoard {
     }
     public void updateSquare(int squareNumber, char marker)
     {
-        board[squareNumber] = marker;
+        board[squareNumber - 1] = marker;
         int openRemover = openSquares.indexOf(squareNumber);
         openSquares.remove(openRemover);
     }
@@ -77,10 +77,16 @@ public class GameBoard {
         {
 
             if(xSpots.contains(winCombinations[i][0]) & xSpots.contains(winCombinations[i][1]) & xSpots.contains(winCombinations[i][2]))
+            {
                 return true;
+            }
             if(oSpots.contains(winCombinations[i][0]) & oSpots.contains(winCombinations[i][1]) & oSpots.contains(winCombinations[i][2]))
+            {
                 return true;
+            }
         }
+        if (getOpenSquares().length == 0 )
+            return true;
         return false;
     }
 }
