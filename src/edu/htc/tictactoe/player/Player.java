@@ -31,15 +31,8 @@ public abstract class Player {
         this.gameMarker = gameMarker;
     }
 
-
-    //Player player2 = new Player();
-
-    Scanner scanner = new Scanner(System.in);
-
     public String getName()
     {
-        //System.out.print("Enter Name: "); //In tictactoe class
-        //String Name = scanner.next();
         return Name;
     }
 
@@ -59,20 +52,7 @@ public abstract class Player {
     }
 
     public abstract int getMove();
-//    {
-//
-//        System.out.print("Which square would you like to pick?");
-//        String getMoveInt = scanner.next();
-//        Integer getMove = Integer.parseInt(getMoveInt);
-//
-//        while (getMove < 1 || getMove > 9) {
-//            getMove = getMove;
-//            System.out.print("Pick a square: 1 through 9");
-//             getMoveInt = scanner.next();
-//             getMove = Integer.parseInt(getMoveInt);
-//        }
-//        return getMove;
-//    }
+
 
     public int addWin()
     {
@@ -81,14 +61,6 @@ public abstract class Player {
         return winCounter;
     }
 
-    public static void main(String[] args) {
-//
-//        Player player1 = new Player("Chee", 'X');
-//        int move = player1.getMove();
-//        System.out.println("Picked" + move);
-//        player1.getMove();
-
-    }
 
 
 }

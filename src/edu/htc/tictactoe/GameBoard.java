@@ -97,7 +97,7 @@ public class GameBoard {
 
     }
 
-    ///MAIN LINE///
+    /////////////////////////MAIN LINE///////////////////////////
     public static void main(String[] args)
 
     {
