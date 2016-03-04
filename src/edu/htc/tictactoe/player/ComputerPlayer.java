@@ -8,13 +8,24 @@ import edu.htc.tictactoe.strategy.TicTacToeStrategy;
  */
 public class ComputerPlayer extends Player {
     TicTacToeStrategy strategy;
+
     public ComputerPlayer(String name, char marker, TicTacToeStrategy strategy) {
         super(name, marker);
         this.strategy = strategy;
+
     }
+
+
+
+
+
     public int getMove() {
 
         return strategy.getBestMove(); }
 
 
-}
+    }
+
+
+
+
