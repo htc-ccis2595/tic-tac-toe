@@ -15,9 +15,13 @@ public class ComputerPlayer extends Player {
 
     }
 
+    public TicTacToeStrategy getStrategy() {
+        return strategy;
+    }
 
-
-
+    public void setStrategy(TicTacToeStrategy strategy) {
+        this.strategy = strategy;
+    }
 
     public int getMove() {
 

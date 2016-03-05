@@ -14,8 +14,6 @@ import java.util.ArrayList;
 public abstract class TicTacToeStrategy {
     //instance variables
     private Random rand = new Random();
-    private int winCombinations[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9},
-            {1, 5, 9}, {3, 6, 9}, {2, 5, 8}, {1, 4, 7}, {3, 5, 7}};
     GameBoard gameboard;
 
 
@@ -25,12 +23,14 @@ public abstract class TicTacToeStrategy {
     public TicTacToeStrategy(GameBoard gameboard) {
         this.gameboard = gameboard;
         this.gameboard.getOpenSquares();
-        System.out.println("AI thinks these squares are open: " + this.gameboard.openSquares); //this keeps running over and over
+
 
 
     }
 
-
+    public void setGameboard(GameBoard gameboard) {
+        this.gameboard = gameboard;
+    }
 
     public abstract int getBestMove();
 
@@ -53,7 +53,7 @@ public abstract class TicTacToeStrategy {
 
         int[] opensquares = gameboard.getOpenSquares(); //actual open squares
 
-        //System.out.println("AI thinks these squares are open: " + gameboard.openSquares); //this keeps running over and over
+
 
 
         //if position 5 is open move to middle square
@@ -97,13 +97,7 @@ public abstract class TicTacToeStrategy {
         }
     }
 
-    protected int getBlockWinMove() {
-        int i;
-        char[] chBoard = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-
-             return 0;
-    }
 
 
 

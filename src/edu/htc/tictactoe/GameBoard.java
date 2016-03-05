@@ -8,11 +8,16 @@ import java.util.ArrayList;
  */
 public class GameBoard {
     private char chBoard[];
-    public ArrayList<Integer> openSquares; //change back to private afterwards
+    private ArrayList<Integer> openSquares; //change back to private afterwards
     private int winCombinations[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9},
             {1, 5, 9}, {3, 6, 9}, {2, 5, 8}, {1, 4, 7}, {3, 5, 7}};
 
     public GameBoard() {
+        reset();
+
+    }
+
+    public void reset() {
         chBoard = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
         openSquares = new ArrayList();
         openSquares.add(1);

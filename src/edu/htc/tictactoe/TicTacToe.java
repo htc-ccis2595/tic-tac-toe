@@ -1,13 +1,10 @@
 package edu.htc.tictactoe;
 import edu.htc.tictactoe.player.*;
-import edu.htc.tictactoe.strategy.BestOpenMoveStrategy;
-import edu.htc.tictactoe.strategy.BlockWinStrategy;
-import edu.htc.tictactoe.strategy.RandomMoveStrategy;
-import edu.htc.tictactoe.strategy.TicTacToeStrategy;
+import edu.htc.tictactoe.strategy.*;
 
 import java.util.Scanner;
-public class TicTacToe {
 
+public class TicTacToe {
 
 
   private Player player1;
@@ -16,10 +13,10 @@ public class TicTacToe {
 
 
   private GameBoard gameboard;
+
   //constructor
   public TicTacToe(Player player1,
-                   Player player2)
-  {
+                   Player player2) {
     this.player1 = player1;
     this.player2 = player2;
 
@@ -27,13 +24,12 @@ public class TicTacToe {
 
   public void playGame() {
 
-    if( gameboard == null) {
+    if (gameboard == null) {
       gameboard = new GameBoard();
     }
-    System.out.println("Board reset: " + this.gameboard.openSquares);
 
     //if player1 has no name and marker, setup human player
-    if( player1 == null ) {
+    if (player1 == null) {
       player1 = setupHumanPlayer('X');
     }
 
@@ -44,31 +40,44 @@ public class TicTacToe {
 
 
     //if player2 has no name and marker, setup human player
-    if( player2 == null ) {
+    if (player2 == null) {
+
       do {
         System.out.println("Would you like to play an AI " + player1.getName() + "? ");
         playai = scanner.next();
 
-      } while(playai.equalsIgnoreCase("") && !playai.equalsIgnoreCase("no") && !playai.equalsIgnoreCase("yes"));
-      if(playai.equalsIgnoreCase("yes")){ //if user input is yes, create ComputerPlayer
+      } while (playai.equalsIgnoreCase("") && !playai.equalsIgnoreCase("no") && !playai.equalsIgnoreCase("yes"));
+
+      if (playai.equalsIgnoreCase("yes")) { //if user input is yes, create ComputerPlayer
         String difficulty;
-        System.out.println("Select Difficulty Easy, Normal or Hard: ");
-        difficulty = scanner.next();
-        if(difficulty.equalsIgnoreCase("easy")) {
-          player2 = setupComputerPlayer('O');
-        }
-        else if(difficulty.equalsIgnoreCase("normal")) {
-          player2 = setupComputerPlayer1('O');
-        }
-        else if(difficulty.equalsIgnoreCase("hard")) {
-          player2 = setupComputerPlayer2('O');
-        }
+        do {
+          System.out.println("Select Difficulty Easy, Normal, Hard or Extreme: ");
+          difficulty = scanner.next();
+          if (difficulty.equalsIgnoreCase("easy")) {
+            player2 = setupComputerPlayer('O');
+          } else if (difficulty.equalsIgnoreCase("normal")) {
+            player2 = setupComputerPlayer1('O');
+          } else if (difficulty.equalsIgnoreCase("hard")) {
+            player2 = setupComputerPlayer2('O');
+          } else if (difficulty.equalsIgnoreCase("extreme")) {
+            player2 = setupComputerPlayer3('O');
+          }
+        } while(!difficulty.equalsIgnoreCase("easy") && !difficulty.equalsIgnoreCase("normal") && !difficulty.equalsIgnoreCase("hard") && !difficulty.equalsIgnoreCase("extreme"));
+
+
+
+      } else { //if user input is not = to yes, setup HumanPlayer
+        player2 = setupHumanPlayer('O');
+      }
+
+    } else {
+      if (player2 instanceof ComputerPlayer) {
+        ((ComputerPlayer) player2).getStrategy().setGameboard(gameboard);
+
 
       }
-      else { //if user input is not = to yes, setup HumanPlayer
-        player2 = setupHumanPlayer('O'); }
-
     }
+
 
     System.out.println("Player 2's name " + player2.getName());
     System.out.println("Player 2's marker " + player2.getMarker());
@@ -134,9 +143,9 @@ public class TicTacToe {
     //if user wants to play again use current player names and markers
    if(playagain.equalsIgnoreCase("Yes")) {
      TicTacToe game2 = new TicTacToe(player1, player2);
-     System.out.println("Game 2 Board: " + this.gameboard.openSquares);
-     gameboard = new GameBoard();
-     System.out.println("Game 2 updated Board: " + this.gameboard.openSquares);
+    gameboard.reset();
+
+
      game2.playGame();
 
 
@@ -185,10 +194,20 @@ public class TicTacToe {
     String hardai;
 
     hardai = "HARDLY SCARY";
-    TicTacToeStrategy strategy2 = new BlockWinStrategy(gameboard);
+    TicTacToeStrategy strategy2 = new BlockWinStrategy(gameboard, marker);
 
 
     return new ComputerPlayer(hardai, marker, strategy2);
+  }
+
+  private ComputerPlayer setupComputerPlayer3(char marker) {
+    String extremeai;
+
+    extremeai = "EXTREMELY SCARY";
+    TicTacToeStrategy strategy3 = new GoForWinStrategy(gameboard, marker);
+
+
+    return new ComputerPlayer(extremeai, marker, strategy3);
   }
 
 
