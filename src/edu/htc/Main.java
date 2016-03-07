@@ -11,16 +11,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+        Board.setGameType();
 
 
         Board.createBoard();
+
+
 
         player1.setPlayerTolken();
         if(player1.playerTolken == "X"){
             player2.playerTolken = "O";
         }
         else{player2.playerTolken = "X";}
+
+
+
 
         Board.showBoard();
       while(Board.isGameOver() == false) {
@@ -29,10 +34,15 @@ public class Main {
              player1.takeTurn();
              turnCounter = turnCounter + 1;
          }
-          else{
-             System.out.println("Player 2, Take a Turn");
-             player2.takeTurn();
-             turnCounter = turnCounter + 1;
+          else {
+             if (Board.gameType == "single") {
+                  player2.takeRandomSquare();
+                 turnCounter = turnCounter + 1;
+             } else {
+                 System.out.println("Player 2, Take a Turn");
+                 player2.takeTurn();
+                 turnCounter = turnCounter + 1;
+             }
          }
 
           Board.showBoard();

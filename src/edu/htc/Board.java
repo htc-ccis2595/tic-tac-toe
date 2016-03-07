@@ -1,9 +1,9 @@
 package edu.htc;
-
+import java.util.Scanner;
 
 
 public class Board {
-
+public static String gameType;
 public static void createBoard(){
     Main.boardVals.add("0");
     Main.boardVals.add("1");
@@ -49,7 +49,31 @@ public static boolean isGameOver(){
     return false;
 }}
 
+public static void setGameType() {
+    Scanner gameTypeScanner = new Scanner(System.in);
+    int num;
+    boolean check = true;
+
+    while (check == true) {
+        System.out.println("How Many People Will Be Playing This Game?");
+        num = gameTypeScanner.nextInt();
+
+        if(num < 3 && num > 0){
+            if(num == 1){
+                gameType = "single";
+                check = false;
+            }
+            if(num == 2){
+                gameType = "multi";
+                check = false;
+            }
+          System.out.println("OK, This will be a " + gameType + " game.");
 
 
+        }
+    }
 }
+}
+
+
 

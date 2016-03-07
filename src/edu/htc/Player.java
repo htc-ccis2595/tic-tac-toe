@@ -1,5 +1,6 @@
 package edu.htc;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Player {
      public String playerTolken = "";
@@ -48,7 +49,21 @@ public class Player {
     }
 
 
-
+    public void takeRandomSquare(){
+        System.out.println("FUNCTION RAN");
+    Random myRandom = new Random();
+        int val;
+        boolean stop = false;
+        do {
+            val = myRandom.nextInt(9);
+            System.out.println(val);
+            if(Main.boardVals.get(val) != "X" && Main.boardVals.get(val) != "O"){
+                Main.boardVals.set(val, playerTolken);
+                stop = true;
+        }
+        }
+        while(stop == false);
+    }
 
 
 }
