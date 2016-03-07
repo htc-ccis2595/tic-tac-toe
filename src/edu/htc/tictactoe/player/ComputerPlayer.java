@@ -1,28 +1,43 @@
 package edu.htc.tictactoe.player;
 
 import edu.htc.tictactoe.GameBoard;
-import edu.htc.tictactoe.TicTacToe;
 import edu.htc.tictactoe.strategy.*;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by cheey on 2/23/2016.
  */
 public class ComputerPlayer extends Player {
+    //GameBoard game;
 
+    TicTacToeStrategy strategy;
+    //RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
 
-
-    public ComputerPlayer(String name, char gameMarker)
+    public ComputerPlayer(String compName, char compMarker)
+                          //TicTacToeStrategy strategy)
         {
-            super(name, gameMarker);
+            super(compName, compMarker);
+            this.strategy = strategy;
 
         }
 
-    public int getMove() {
-        return 0;
-    }
+    public int getMove()
+
+        {
+//            System.out.print(getName() + "picks square " + randomMoveStrategy.getRandomMove());
+//            String getMoveInt = ComputerPlayer.next();
+//            Integer getMove = Integer.parseInt(getMoveInt);
+//            if (getMove > 1 && getMove < 10)
+//                getMove = getMove;
+//             return 0;
+
+            return  strategy.getBestMove();
+
+
+
+        }
+
+
+
 
 
 

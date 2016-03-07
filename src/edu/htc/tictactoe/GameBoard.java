@@ -32,7 +32,7 @@ public class GameBoard {
         board = testBoard;
         for (int p = 0; p < 9; p++) {
             char squareValue = board[p];
-            if (squareValue != 'x' && squareValue != 'o') {
+            if (squareValue != 'X' && squareValue != 'O') {
                 openSquares.add(p + 1);
             }
         }

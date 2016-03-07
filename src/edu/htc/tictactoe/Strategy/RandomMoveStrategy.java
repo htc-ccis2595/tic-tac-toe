@@ -1,16 +1,29 @@
 package edu.htc.tictactoe.strategy;
 
+import edu.htc.tictactoe.player.ComputerPlayer;
 import edu.htc.tictactoe.GameBoard;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by cheey on 2/29/2016.
  */
-    public class RandomMoveStrategy extends TTTStrategy {
+    public class RandomMoveStrategy extends TicTacToeStrategy {
 
-    Random random = new Random();
+ComputerPlayer computerPlayer = new ComputerPlayer("Computer Player", 'O');
+//    RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy(game);
+
+//    TicTacToeStrategy strategy = new TicTacToeStrategy(game) {
+//        @Override
+//        public int getBestMove() {
+//            return 0;
+//        }
+//        public int getRandomMove(){
+//            return 0;
+//        }
+//    };
+    Random randNum = new Random();
+
 
     public RandomMoveStrategy(GameBoard game)
     {
@@ -19,20 +32,20 @@ import java.util.Random;
     }
 
     public int getBestMove(){
-        return 0;
+        return getRandomMove();
     }
 
-    public  int getRandomMove(){
-
-
-
-        ArrayList<Random> Random  = new ArrayList<Random>();
+    public int getRandomMove()
+    {
         int[] randomSquare = game.getOpenSquares();
+        int getRandomMove = randNum.nextInt(randomSquare.length);
 
-        int getRandomMove = random.nextInt(randomSquare.length + 1);
-        return getRandomMove;
+        return randomSquare[getRandomMove];
     }
-}
+
+
+    }
+
 
 
 

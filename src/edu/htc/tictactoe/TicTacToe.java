@@ -9,17 +9,25 @@ public class TicTacToe {
 
     Player player1;
     Player player2;
+    GameBoard game;
 
-    TTTStrategy strategy = new TTTStrategy(game) {
+    RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy(game);
+
+    TicTacToeStrategy strategy = new TicTacToeStrategy(game) {
         @Override
         public int getBestMove() {
+            return 0;
+        }
+        public int getRandomMove(){
             return 0;
         }
     };
 
 
 
-    GameBoard game;
+
+
+
     Scanner scanner = new Scanner(System.in);
 
     public TicTacToe() {
@@ -32,8 +40,8 @@ public class TicTacToe {
       System.out.println("How many players?");
       String playersInt = scanner.next();
       Integer players = Integer.parseInt(playersInt);
-        if (players > 0 && players < 3)
-            players = players;
+//        if (players > 0 && players < 3)
+//            players = players;
 
 
 ///////////////////////2 PLAYER GAME////////////////////////////////////
@@ -62,7 +70,7 @@ public class TicTacToe {
             while (game.isGameWon() == false)
 
             {
-                //PLAYER1 PROMPT
+                /////////////////////////////PLAYER1 PROMPT
                 game.display();
                 int move = player1.getMove();
                 game.isSquareOpen(move);
@@ -72,12 +80,14 @@ public class TicTacToe {
 
                 if (game.isGameWon() == true) {
                     System.out.println(Name + " is the winner!");
+                    game.display();
                     player1.addWin();
+                    System.out.println(Name + " wins: " + player1.getWinCount());
                 } else {
 
                     System.out.println("Updated Board");
 
-                    //PLAYER2 PROMPT
+                    /////////////////////////PLAYER2 PROMPT
                     game.display();
                     int move2 = player2.getMove();
                     game.isSquareOpen(move2);
@@ -87,7 +97,9 @@ public class TicTacToe {
 
                     if (game.isGameWon() == true) {
                         System.out.println(Name2 + " is the winner!");
+                        game.display();
                         player2.addWin();
+                        System.out.println(Name2 + " wins: " + player2.getWinCount());
                     }
                     System.out.println("Updated Board");
 
@@ -106,7 +118,7 @@ public class TicTacToe {
             String Name2 = "Computer";
             char gameMarker2 = 'O';
             player2 = new ComputerPlayer(Name2, gameMarker2);
-
+            //System.out.println(player2);
 
             while (game.isGameWon() == false)
 
@@ -121,6 +133,7 @@ public class TicTacToe {
 
                 if (game.isGameWon() == true) {
                     System.out.println(Name + " is the winner!");
+                    game.display();
                     player1.addWin();
                 }
 
@@ -130,7 +143,7 @@ public class TicTacToe {
 
                     //COMPUTER PLAYER
                     game.display();
-                    int move2 = player2.getRandomMove();
+                    int move2 = player2.getMove();
                     game.isSquareOpen(move2);
                     if (game.isSquareOpen(move2) == true) {
                         game.updateSquare(move2, gameMarker2);
@@ -138,6 +151,7 @@ public class TicTacToe {
 
                     if (game.isGameWon() == true) {
                         System.out.println(Name2 + " is the winner!");
+                        game.display();
                         player2.addWin();
                     }
                     System.out.println("Updated Board");
@@ -157,6 +171,7 @@ public class TicTacToe {
         TicTacToe ticTac = new TicTacToe();
 
         ticTac.playGame();
+
 
 
     }
