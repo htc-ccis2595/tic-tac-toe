@@ -48,8 +48,8 @@ public class Player {
     public int getMove(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the square you want to play:");
-        int sq = scanner.nextInt();
-        return sq;
+        return scanner.nextInt();
+
     }
 
     //Increment win count when game is won
