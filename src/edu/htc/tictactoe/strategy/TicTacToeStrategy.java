@@ -12,6 +12,63 @@ public abstract class TicTacToeStrategy {
 
     public static void main(String[] args){
         testGetRandomMove();
+        testBestOpenStrategy();
+        testBlockWinStrategy();
+        testGoForWinStrategy();
+        testRandomMoveStrategy();
+    }
+
+    public static void testRandomMoveStrategy(){
+
+    }
+
+    public static void testGoForWinStrategy(){
+
+    }
+
+    public static void testBlockWinStrategy(){
+
+    }
+
+    public static void testBestOpenStrategy(){
+        System.out.println();
+        System.out.println("----------------------------------------------");
+        System.out.println("Testing getBestOpenMove method");
+        GameBoard board = new GameBoard(new char[]{'1','X','3','4','O','6','X','8','O'});
+
+        //Creates anonymous inner class with dummy get
+
+        //Creates anonymous inner class with dummy getBestMove behavior
+        BestOpenMoveStrategy BestOpenMoveStrategy = new BestOpenMoveStrategy() {
+            public int getBestOpenMove(GameBoard board, char gameMarker) {
+                return 0;
+            }
+
+        };
+
+        //Since the result is random, testing multiple times to validate good output
+
+        boolean error = false;
+        int numberOfRuns = 50;
+
+        for (int i=0; i<numberOfRuns; i++){
+
+            int result = BestOpenMoveStrategy.getBestOpenMove(board);
+            System.out.println("The best move result is " + result);
+            if (result < 0 || result > 8){
+                error = true;
+                System.out.println("Error! Square " + result + " is out of bounds.  Must be between 1 and 9");
+            } else if (board.isSquareOpen(result) == false) {
+                error = true;
+                System.out.println("Error! Square " + result + " is not open!");
+            }
+
+        }
+
+        if (error == false){
+            System.out.println("Correct.  No bad output was found in " + numberOfRuns + " tries!");
+
+        }
     }
 
     public static void testGetRandomMove(){
@@ -21,9 +78,10 @@ public abstract class TicTacToeStrategy {
         System.out.println("Testing getRandomMove method");
         GameBoard board = new GameBoard(new char[]{'1','X','3','4','O','6','X','8','O'});
 
+        //Creates anonymous inner class with dummy get
+
         //Creates anonymous inner class with dummy getBestMove behavior
         TicTacToeStrategy strategy = new TicTacToeStrategy() {
-            @Override
             public int getBestMove(GameBoard board, char gameMarker) {
                 return 0;
             }
@@ -53,10 +111,6 @@ public abstract class TicTacToeStrategy {
 
         }
     }
-
-
-
-    public abstract int getBestMove(GameBoard board, char gameMarker);
 
 
 

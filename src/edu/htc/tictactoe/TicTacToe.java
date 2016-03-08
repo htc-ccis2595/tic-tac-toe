@@ -107,20 +107,33 @@ public class TicTacToe {
     Integer IntAnswer;
     IntAnswer = input.nextInt();
     if (IntAnswer == 1){
-      // get the name for the human
-      player1.getName(1);
-      // set the name for the computer to "Hal"
-      player3.setName("HAL");
-      player2 = null;
-      System.out.println("OK, the computer will be playing the game with you!");
+        // get the name for the human
+        player1.getName(1);
+        // set the name for the computer to "Hal"
+        player3.setName("HAL");
+        player2 = null;
+        System.out.println("OK, the computer will be playing the game with you!");
+        // Now lets determine the level of difficulty for playing the game
+        //     1 -- Simple
+        //     2 -- Easy
+        //     3 -- Medium
+        //     4 -- Hard
+
+        System.out.println("Now lets determine the level of difficulty for this game!");
+        System.out.println("Level 1 is Simple");
+        System.out.println("Level 2 is Easy");
+        System.out.println("Level 3 is Medium");
+        System.out.println("Level 4 is Hard");
+        IntAnswer = input.nextInt();
+
+        if (IntAnswer > 0 & IntAnswer < 5){
+            board.intGameLevel = IntAnswer;
+        }
+
     } else {
       player1.getName(1);
       player2.getName(2);
     }
-
-
-
-
   }
 
   public void gameReport(){

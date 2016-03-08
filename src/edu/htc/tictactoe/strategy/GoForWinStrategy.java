@@ -8,7 +8,15 @@ public class GoForWinStrategy {
     char playerMarker;
     int[][] winCombinations;
 
-    public void findWinFor(char marker){
+    public int findWinFor(char marker){
 
+        // first look for a computer win
+
+        // second block a win
+
+        // third take the best open move
+
+
+        return 0;
     }
 }

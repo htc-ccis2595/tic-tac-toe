@@ -14,6 +14,17 @@ public class GameBoard {
     //input parameter, a char[] that contains the desired state of the board.
     //Make sure the the ArrayList openSquares is set up correctly to match the input array values.
     private char[] boardstatus;
+
+    // this variable tells the program what level of difficulty that
+    // the playing environment will be.
+    // This game will have 4 levels of difficulty:
+    //     1 -- Simple
+    //     2 -- Easy
+    //     3 -- Medium
+    //     4 -- Hard
+    public int intGameLevel;
+
+
     public GameBoard(char[] stateArray){
         boardstatus = stateArray;
     }
