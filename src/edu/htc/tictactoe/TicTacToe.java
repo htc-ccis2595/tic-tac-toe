@@ -46,7 +46,7 @@ public class TicTacToe {
         System.out.println("Would you like to play an AI " + player1.getName() + "? ");
         playai = scanner.next();
 
-      } while (playai.equalsIgnoreCase("") && !playai.equalsIgnoreCase("no") && !playai.equalsIgnoreCase("yes"));
+      } while (!playai.equalsIgnoreCase("no") && !playai.equalsIgnoreCase("yes"));
 
       if (playai.equalsIgnoreCase("yes")) { //if user input is yes, create ComputerPlayer
         String difficulty;
@@ -136,14 +136,14 @@ public class TicTacToe {
     //would you like to play again?
     String playagain;
     do {
-      System.out.println("Would you like to play again? ");
+      System.out.println("Would you like to play again? If you do, type Yes or Y. If not type No or N ");
       playagain = scanner.next();
-    } while (playagain.equalsIgnoreCase(""));
+    } while (!playagain.equalsIgnoreCase("yes") && !playagain.equalsIgnoreCase("no") && !playagain.equalsIgnoreCase("y") && !playagain.equalsIgnoreCase("n") );
 
     //if user wants to play again use current player names and markers
-   if(playagain.equalsIgnoreCase("Yes")) {
+   if(playagain.equalsIgnoreCase("Yes") || playagain.equalsIgnoreCase("y")) {
      TicTacToe game2 = new TicTacToe(player1, player2);
-    gameboard.reset();
+     gameboard.reset();
 
 
      game2.playGame();
@@ -160,15 +160,16 @@ public class TicTacToe {
 
 //setup name and marker for human player
   private Player setupHumanPlayer(char marker) {
-      String name;
-      do {
-          System.out.println("What is your name player? ");
-          name = scanner.next();
-      } while (name.equalsIgnoreCase(""));
+    String name;
+    do {
+      System.out.println("What is your name player? Name must be more than 2 characters ");
+      name = scanner.next();
+    } while (name.length() < 2);
 
-      return new HumanPlayer(name, marker);
 
-    }
+    return new HumanPlayer(name, marker);
+
+  }
   //setup computerplayer with RandomMoveStrategy
   private ComputerPlayer setupComputerPlayer(char marker) {
     String easyai;

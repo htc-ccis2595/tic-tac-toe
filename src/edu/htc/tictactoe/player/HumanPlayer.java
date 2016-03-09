@@ -1,4 +1,5 @@
 package edu.htc.tictactoe.player;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -14,14 +15,18 @@ public class HumanPlayer extends Player {
 
     public int getMove() {
 
-            System.out.println("Hello user, enter a number between 1 and 9 to play your marker: ");
-            int pos = scanner.nextInt();
-            while(pos > 9 || pos < 1) {
-                System.out.println("You dingus, type a number greater than 1 and less than 9!");
-                pos = scanner.nextInt();
+
+        int pos = 0;
+        while (pos > 9 || pos < 1) {
+            System.out.println("Enter a number between 1 and 9 to play your marker: ");
+            try {
+                pos = Integer.parseInt(scanner.next());
+            } catch (NumberFormatException exc) {
+                System.out.println("Integer must be between 1 and 9!!!, you dingus!!!!");
             }
 
-            return pos;
         }
+        return pos;
     }
+}
 
