@@ -1,8 +1,5 @@
 package edu.htc.tictactoe.players;
 
-import edu.htc.tictactoe.GameBoard;
-import edu.htc.tictactoe.players.*;
-
 import java.util.Scanner;
 
 /**
@@ -14,18 +11,29 @@ public class HumanPlayer extends Player {
         super(name, gameMarker);
     }
 
-    Scanner scanner = new Scanner(System.in);
+    Scanner ask = new Scanner(System.in);
 
     public int getMove() {
         int moveInt = 0;
-        System.out.println();
         System.out.println("Where would you like to move? Enter a number 1 through 9: ");
 
+        while (moveInt == 0) {
+            String moveRqst = ask.next();
+            try {
+                moveInt = Integer.parseInt(moveRqst);
+            } catch (NumberFormatException exStrToIntSuperman) {
+                System.out.println("No Strings allowed.");
+                System.out.println("Where would you like to move? Enter a number 1 through 9: ");
+            }
+        }
+
         while (outsideRange(moveInt)) {
-            moveInt = scanner.nextInt();
             if (outsideRange(moveInt)) {
                 System.out.println("You must enter a number 1 through 9");
             }
+
+            moveInt = ask.nextInt();
+
         }
         return moveInt;
     }

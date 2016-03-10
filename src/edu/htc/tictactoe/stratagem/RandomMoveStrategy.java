@@ -9,23 +9,11 @@ import java.util.Random;
  */
 public class RandomMoveStrategy extends TicTacToeStrategy {
 
-    GameBoard board;
-
-    public RandomMoveStrategy(GameBoard board) {
-        super(board);
+    public RandomMoveStrategy(GameBoard board, char playerMarker) {
+        super(board, playerMarker);
     }
 
     public int getBestMove() {
         return getRandomMove();
-    }
-
-    public static void main(String args[]) {
-
-        GameBoard board = new GameBoard();
-        RandomMoveStrategy strategy = new RandomMoveStrategy(board);
-
-        System.out.println("Testing getRandomNum");
-        System.out.println(strategy.getBestMove());
-
     }
 }

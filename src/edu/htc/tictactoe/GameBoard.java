@@ -1,5 +1,4 @@
 package edu.htc.tictactoe;
-
 import java.util.ArrayList;
 
 /**
@@ -7,7 +6,7 @@ import java.util.ArrayList;
  */
 public class GameBoard {
 
-    public char[] getBoard() {
+    private char[] getBoard() {
         return board;
     }
 
@@ -33,8 +32,7 @@ public class GameBoard {
     }
 
     public GameBoard() {
-        int counter;
-        for (counter = 1; counter < 10; counter++) {
+        for (int counter = 1; counter < 10; counter++) {
             openSquares.add(counter);
         }
     }
@@ -58,12 +56,12 @@ public class GameBoard {
         GameBoard yolo = new GameBoard(new char[]{'X', '2', 'O', '4', 'X', 'O', '7', 'O', 'X'});
         yolo.display();
         System.out.println("Testing getSquareValue");
-        for (i = 1; i < 9; i++){
+        for (i = 1; i < 9; i++) {
             System.out.println(yolo.getSquareValue(i));
         }
         System.out.println();
         System.out.println("Testing isSquareOpen");
-        for (i = 1; i < 9; i++){
+        for (i = 1; i < 9; i++) {
             System.out.println(yolo.isSquareOpen(i));
         }
         System.out.println();
@@ -113,13 +111,15 @@ public class GameBoard {
     }
 
     public char getSquareValue(int x) {
-        return board[x - 1];
+        return getBoard()[x - 1];
     }
 
     public boolean isSquareOpen(int x) {
         if (board[x - 1] == 'X' || board[x - 1] == 'O') {
             return false;
-        } else return true;
+        } else {
+            return true;
+        }
     }
 
     public void display() {
@@ -132,7 +132,9 @@ public class GameBoard {
         System.out.println(" " + board[6] + " | " + board[7] + " | " + board[8] + " ");
         System.out.println("   |   |   ");
     }
-    public static void main(String args[]){
+
+
+    public static void main(String args[]) {
 
         GameBoard test = new GameBoard();
         test.testGameBoard();
