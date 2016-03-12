@@ -8,7 +8,7 @@ public class HumanPlayer extends Player {
     public int getMove(char cMarker){
         String strMove;
         int intSquareChoice = 0;
-        Boolean blnValid;
+        Boolean blnValid = false;
 
         System.out.println(this.name+", please enter a block to place your " + cMarker + " in: ");
 

@@ -14,6 +14,8 @@ public class TicTacToe {
   public ComputerPlayer player3 = new ComputerPlayer();
 
   public int intOpenSquares = 9;
+  public boolean blnGameIsWon = false;
+  public boolean blnGameisTie = false;
   public boolean blnExitLoop;
   Scanner input = new Scanner(System.in);
 
@@ -47,25 +49,30 @@ public class TicTacToe {
       if (player1.isCurrentPlayer) {
         intNextMove = player1.getMove('X');
         board.updateSquare(intNextMove, 'X');
-      } else {
+        Main.intCurrentPlayer = 2;
+       } else {
         if (player2 == null) {
           //Computer is playing ..
           intNextMove = player3.getMove(board, 'O');
           board.updateSquare(intNextMove, 'O');
+          Main.intCurrentPlayer = 1;
         } else {
           intNextMove = player2.getMove('O');
           board.updateSquare(intNextMove, 'O');
+          Main.intCurrentPlayer = 1;
         }
       }
       board.display();
       intOpenSquares = board.getOpenSquares();
       System.out.println("There are " + intOpenSquares + " open squares.");
       if (intOpenSquares == 0) {
-        // Game is a tie
-        blnExitLoop = true;
-      }
-      if (board.isGameWon(board.board)) {
-        blnExitLoop = true;
+        if (board.isGameWon(board.board)) {
+          blnExitLoop = true;
+          blnGameIsWon = true;
+        } else { // Game is a tie
+          blnExitLoop = true;
+          blnGameisTie = true;
+        }
       }
 
     } while (!blnExitLoop);
@@ -73,7 +80,7 @@ public class TicTacToe {
     // if the intOpenSquares variable is greater than 0, the game has been either
     // won or lost.
 
-    if (intOpenSquares > 0) {
+    if (blnGameIsWon) {
       if (player1.isCurrentPlayer) {
         player1.addWin();
         System.out.println("Congratulations, " + player1.name + " you win the game!");
@@ -90,7 +97,7 @@ public class TicTacToe {
       }}
 
     } else {
-      if (intOpenSquares == 0)
+      if (blnGameisTie)
         System.out.println("Sorry, game has ended in a tie.");
     }
     ResetGame();
@@ -167,6 +174,8 @@ public class TicTacToe {
     currentBoard = board.board;
     intOpenSquares = 9;
     blnExitLoop = false;
+    blnGameIsWon = false;
+    blnGameisTie = false;
   }
 
 }

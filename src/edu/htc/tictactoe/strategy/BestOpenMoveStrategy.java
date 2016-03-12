@@ -14,12 +14,16 @@ public abstract class BestOpenMoveStrategy extends TicTacToeStrategy {
         // Move will be a number from 1 to 9 which will represent the
         // actual location on the board.  So, as long as IntBestOpenMove is 0,
         // no move decision has been made yet.
+        Integer intPickedSquare=0;
+        int index=0;
+        Integer randomInt = 0;
+
 
         int IntBestOpenMove = 0;
         //** First look at the center spot, and select that if it is open
         //** Center square is actually location 4 on the board
-        if (board.isSquareOpen(4)){
-            IntBestOpenMove = 5;
+        if (board.isSquareOpen(4)) {
+            IntBestOpenMove = 4;
             return IntBestOpenMove;
         }
         //** Second find all open corners and
@@ -28,76 +32,81 @@ public abstract class BestOpenMoveStrategy extends TicTacToeStrategy {
         //** Put these locations into a list array.  If the square is open,
         //** we will add it to the array.
         ArrayList<Integer> openCorners = new ArrayList<>();
-        openCorners.add(1);
-        openCorners.add(3);
-        openCorners.add(7);
-        openCorners.add(9);
 
-        for (int j = 0; j < openCorners.size() ; j++) {
-            //** if square is not open, remove it from the array
-            if (!board.isSquareOpen(j)){
-                openCorners.remove(j);
-            }
+        if (board.isSquareOpen(0)){
+            openCorners.add(1);
         }
-
-         //** if the number of elements in the array is greater that zero,
-        //** pick a random corner
-        if (openCorners.size()>0) {
-            Integer intArraySize = openCorners.size();
-            // create a new Java Random object
-            Random random = new Random();
-            Integer randomInt = 0;
-            boolean blnIsOpen = false;
-            boolean blnExit;
-
-            // get the next random int
-            randomInt = random.nextInt(4);
-            if (randomInt > 0 && randomInt < openCorners.size()) {
-                IntBestOpenMove = openCorners.get(randomInt);
-            }
+        if (board.isSquareOpen(2)){
+            openCorners.add(3);
         }
-            //** if the center and corners are not taken, then
-            //** then check the middle squares
-
-        //** Third find all open middles and
-        //** then choose a random one
-        //** The middles will have locations 2,4,6,8
-        //** Put these locations into a list array.  If the square is open,
-        //** we will add it to the array.
-        ArrayList<Integer> openMiddles = new ArrayList<>();
-        openCorners.add(2);
-        openCorners.add(4);
-        openCorners.add(6);
-        openCorners.add(8);
-
-        for ( int i : openMiddles   ) {
-            //** if square is not open, remove it from the array
-            if (!board.isSquareOpen(i)){
-                openMiddles.remove(i);
-            }
+        if (board.isSquareOpen(6)){
+            openCorners.add(7);
+        }
+        if (board.isSquareOpen(8)){
+            openCorners.add(9);
         }
 
         //** if the number of elements in the array is greater that zero,
         //** pick a random corner
-        if (openMiddles.size()>0) {
-            Integer intArraySize = openMiddles.size();
+        if (openCorners.size() > 1) {
             // create a new Java Random object
-            Random random = new Random();
-            Integer randomInt = 0;
+            Random randomGenerator = new Random();
+            randomInt = 0;
+            boolean blnIsOpen = false;
+            boolean blnExit;
             boolean blnValid = false;
             // get the next random int
-            do {
-                randomInt = random.nextInt(openMiddles.size());
-                if (randomInt > 0 && randomInt < 4) {
-                    IntBestOpenMove = openMiddles.get(randomInt);
-                    if (board.isSquareOpen(IntBestOpenMove)){
-                        blnValid = true;
-                    }
-                }
-            } while (!blnValid);
+            index = randomGenerator.nextInt(openCorners.size());
+            intPickedSquare = openCorners.get(index);
+            //** picked square needs to be adjusted so the marker goes into the right square
+            intPickedSquare--;
+            return intPickedSquare;
         }
-        return IntBestOpenMove;
+
+        if (openCorners.size() == 1) {
+            intPickedSquare = openCorners.get(index);
+            //** picked square needs to be adjusted so the marker goes into the right square
+            intPickedSquare--;
+            return intPickedSquare;
+        }
+             //** if the center and corners are not taken, then
+            //** then check the middle squares
+
+            //** Third find all open middles and
+            //** then choose a random one
+            //** The middles will have locations 2,4,6,8
+            //** Put these locations into a list array.  If the square is open,
+            //** we will add it to the array.
+        ArrayList<Integer> openMiddles = new ArrayList<>();
+        if (board.isSquareOpen(1)){
+                openMiddles.add(1);
+            }
+        if (board.isSquareOpen(3)){
+                openMiddles.add(3);
+            }
+        if (board.isSquareOpen(5)){
+                openMiddles.add(5);
+            }
+        if (board.isSquareOpen(7)){
+                openMiddles.add(7);
+            }
+
+            //** if the number of elements in the array is greater that zero,
+            //** pick a random corner
+        if (openMiddles.size() > 0) {
+                // create a new Java Random object
+                Random randomGenerator = new Random();
+                 // get the next random int
+                index = randomGenerator.nextInt(openMiddles.size());
+                intPickedSquare = openMiddles.get(index);
+                //** picked square needs to be adjusted so the marker goes into the right square
+                //**intPickedSquare--;
+            }
+        return intPickedSquare;
+
     }
+    }
+
 
 
 
@@ -106,6 +115,5 @@ public abstract class BestOpenMoveStrategy extends TicTacToeStrategy {
     //** Second find all open corners and select a random corner
 
     //** Third if the center and corners are not taken, take a random square
-    }
 
 
