@@ -26,6 +26,9 @@ public class GameBoard {
     //methods
 
 
+    public char[] getBoard() {
+        return board;
+    }
 
     public void display() {
         System.out.println(" " + board[1] + " | " + board[2] + " | " + board[3]);
@@ -52,6 +55,8 @@ public class GameBoard {
         }
         return false;
     }
+
+
 
     public boolean isSquareOpen(int sqrnum){
         return openSquares.contains(sqrnum);

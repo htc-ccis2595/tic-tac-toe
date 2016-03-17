@@ -1,11 +1,11 @@
-package edu.htc.tictactoe;
+package edu.htc.tictactoe.player;
 
 import java.util.Scanner;
 
 /**
  * Created by Sam on 2/18/2016.
  */
-public class Player {
+public abstract class Player {
     //Player variables
     private String name;
     private  char marker;
@@ -45,12 +45,8 @@ public class Player {
          move = mv;
      }
 
-    public int getMove(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the square you want to play:");
-        return scanner.nextInt();
+    public abstract int getMove();
 
-    }
 
     //Increment win count when game is won
     public void addwin(){
