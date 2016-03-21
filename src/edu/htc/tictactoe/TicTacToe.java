@@ -34,6 +34,10 @@ public class TicTacToe {
     System.out.println("Welcome. Let's start by determining our players.");
     while (numOfPlayers > 2){
       System.out.println("How many people are playing today? Please enter 1 or 2: ");
+      while (!scannerttt.hasNextInt()){
+        scannerttt.next();
+        System.out.println("That input was not valid. Please try again.");
+      }
       numOfPlayers = scannerttt.nextInt();
       if ( numOfPlayers > 2 || numOfPlayers <= 0) System.out.println("Sorry, that is not a valid number of players. Please try again.");
     }
@@ -45,6 +49,10 @@ public class TicTacToe {
             System.out.println("    2. Easy");
             System.out.println("    3. Medium");
             System.out.println("    4. Hard");
+            while (!scannerttt.hasNextInt()){
+              scannerttt.next();
+              System.out.println("That input was not valid. Please try again.");
+            }
             difficultylevel = scannerttt.nextInt();
             if (difficultylevel < 1 || difficultylevel > 4)
                 System.out.println("That is not a valid entry. Please try again.");
@@ -72,7 +80,9 @@ public class TicTacToe {
             if (!winner) {
               if (currentPlayer == player1) currentPlayer = (Player) players.get(1);
               else currentPlayer = player1;
-              System.out.println(currentPlayer.getName() + ", it is your turn now.");
+              if(boardClass.getOpenSquares().length != 0) {
+                System.out.println(currentPlayer.getName() + ", it is your turn now.");
+              }
             }
           } else System.out.println("Sorry that square is not available");
         } else {
@@ -108,6 +118,10 @@ public class TicTacToe {
     }
     while(selection != 1 && selection !=2) {
       System.out.println("Player, Enter 1 to use x or 2 to use o:");
+      while (!scannerttt.hasNextInt()) {
+        scannerttt.next();
+        System.out.println("That input was not valid. Please try again.");
+      }
       selection = scannerttt.nextInt();
       if (selection != 1 && selection !=2) System.out.println("That was not a valid selection. Please try again.");
     }

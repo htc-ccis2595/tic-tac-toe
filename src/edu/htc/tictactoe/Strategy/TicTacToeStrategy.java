@@ -76,13 +76,13 @@ public abstract class TicTacToeStrategy {
             //System.out.println("char2 = " + Character.getNumericValue(char2));
             //System.out.println("char3 = " + Character.getNumericValue(char3));
 
-            if (char1 == char2) {
+            if (char1 == char2 && Character.getNumericValue(char3) < 10) {
                 bestMove = Character.getNumericValue(char3);
                 break;
-            } else if (char1 == char3) {
+            } else if (char1 == char3 && Character.getNumericValue(char2) < 10) {
                 bestMove = Character.getNumericValue(char2);
                 break;
-            } else if (char2 == char3) {
+            } else if (char2 == char3 && Character.getNumericValue(char1) < 10) {
                 bestMove = Character.getNumericValue(char1);
                 break;
             } else {
@@ -101,15 +101,15 @@ public abstract class TicTacToeStrategy {
             char char2 = b.getBoard()[wincombo[1]];
             char char3 = b.getBoard()[wincombo[2]];
             if (char1 == mark) {
-                if (char1 == char2) {
+                if (char1 == char2 && Character.getNumericValue(char3) < 10) {
                     bestMove = Character.getNumericValue(char3);
                     break;
-                } else if (char1 == char3) {
+                } else if (char1 == char3 && Character.getNumericValue(char2) < 10) {
                     bestMove = Character.getNumericValue(char2);
                     break;
                 }
             }else if (char2 == mark){
-                if (char2 == char3) {
+                if (char2 == char3 && Character.getNumericValue(char1) < 10) {
                     bestMove = Character.getNumericValue(char1);
                     break;
                 }
@@ -122,7 +122,7 @@ public abstract class TicTacToeStrategy {
     }
 
 
-    public static void main(String[] Args) {
+    /*public static void main(String[] Args) {
         int testMove;
         char boardArr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         GameBoard boardclass = new GameBoard(boardArr);
@@ -165,5 +165,5 @@ public abstract class TicTacToeStrategy {
             if (!boardclass.isSquareOpen(testMove)) System.out.println("Failure" + testMove);
             else System.out.println("Success " + testMove);
         }
-    }
+    }*/
 }
