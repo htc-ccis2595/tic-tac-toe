@@ -38,9 +38,6 @@ public abstract class Player {
 
     public char getMarker()
     {
-        //System.out.print("Marker: x or o?");
-        //String gameMarkerStr = scanner.next();
-        //char gameMarker = gameMarkerStr.charAt(0);
         return gameMarker;
     }
 
@@ -57,7 +54,7 @@ public abstract class Player {
     public int addWin()
     {
         int winCounter = 0;
-        winCounter +=  winCounter;
+        winCounter =  winCounter + 1;
         return winCounter;
     }
 

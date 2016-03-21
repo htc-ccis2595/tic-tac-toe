@@ -89,6 +89,7 @@ public class GameBoard {
 
     public void updateSquare(int update, char marker) {
         board[update - 1] = marker;
+        openSquares.remove(new Integer(update));
     }
 
     public char getSquareValue(int square) {

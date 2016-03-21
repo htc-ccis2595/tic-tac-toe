@@ -18,12 +18,18 @@ public class HumanPlayer extends Player{
 
     {
         System.out.print(getName() + ", which square would you like to pick?");
-        String getMoveInt = humanPlayer.next();
-        Integer getMove = Integer.parseInt(getMoveInt);
-        if (getMove > 1 && getMove < 10)
-            getMove = getMove;
-        return getMove;
 
+        int getMove = 0;
+        while(getMove > 9 || getMove < 1){
+          try{
+
+                getMove = Integer.parseInt(humanPlayer.next());}
+            catch (NumberFormatException e){
+                System.out.println("You didnt enter a number.");
+                System.out.println("Please enter a number between 1 and 9");
+            }
+        }
+            return getMove;
     }
 
 }

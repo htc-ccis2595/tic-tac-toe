@@ -10,18 +10,6 @@ import java.util.Random;
  */
     public class RandomMoveStrategy extends TicTacToeStrategy {
 
-ComputerPlayer computerPlayer = new ComputerPlayer("Computer Player", 'O');
-//    RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy(game);
-
-//    TicTacToeStrategy strategy = new TicTacToeStrategy(game) {
-//        @Override
-//        public int getBestMove() {
-//            return 0;
-//        }
-//        public int getRandomMove(){
-//            return 0;
-//        }
-//    };
     Random randNum = new Random();
 
 
@@ -39,7 +27,6 @@ ComputerPlayer computerPlayer = new ComputerPlayer("Computer Player", 'O');
     {
         int[] randomSquare = game.getOpenSquares();
         int getRandomMove = randNum.nextInt(randomSquare.length);
-
         return randomSquare[getRandomMove];
     }
 

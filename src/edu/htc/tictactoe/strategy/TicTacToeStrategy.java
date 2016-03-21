@@ -14,23 +14,17 @@ import java.util.ArrayList;
 public abstract class TicTacToeStrategy {
 
     GameBoard game;
-    //Random ranNum = new Random();
+
 
 
     public TicTacToeStrategy(GameBoard game)
 
     {
         this.game = game;
+
     }
 
     public abstract int getBestMove();
 
-
-//    protected int getRandomMove()
-//    {
-//        int[] randomSquare = game.getOpenSquares();
-//        int getRandomMove = ranNum.nextInt(randomSquare.length);
-//        return randomSquare[getRandomMove];
-//    }
 
 }
