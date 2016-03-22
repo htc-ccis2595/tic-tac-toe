@@ -7,8 +7,8 @@ import edu.htc.tictactoe.GameBoard;
  */
 public class RandomMoveStrategy extends TicTacToeStrategy{
 
-    public RandomMoveStrategy(GameBoard board) {
-        super(board);
+    public RandomMoveStrategy(GameBoard board,char gameMarker, char playerMarker) {
+        super(board,gameMarker, playerMarker);
     }
 
     @Override

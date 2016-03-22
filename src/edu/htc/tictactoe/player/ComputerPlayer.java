@@ -1,8 +1,7 @@
 package edu.htc.tictactoe.player;
 
 import edu.htc.tictactoe.GameBoard;
-import edu.htc.tictactoe.strategy.RandomMoveStrategy;
-import edu.htc.tictactoe.strategy.TicTacToeStrategy;
+import edu.htc.tictactoe.strategy.*;
 
 /**
  * Created by Owner on 2/28/2016.
@@ -10,9 +9,29 @@ import edu.htc.tictactoe.strategy.TicTacToeStrategy;
 public class ComputerPlayer extends Player {
 
     TicTacToeStrategy ticTacToeStrategy;
-    public ComputerPlayer(String name, char gameMarker, GameBoard board) {
+    char playerMarker;
+    public ComputerPlayer(String name, char gameMarker, GameBoard board, int gameLevel) {
         super(name, gameMarker);
-        ticTacToeStrategy = new RandomMoveStrategy(board);
+        if(gameMarker == 'X' || gameMarker == 'x')
+        {
+            playerMarker = 'O';
+        }
+        else
+        {
+            playerMarker = 'X';
+        }
+        if (gameLevel == 4){
+            ticTacToeStrategy = new GoForWinStrategy(board, gameMarker, playerMarker);
+        }
+        else if (gameLevel == 3){
+            ticTacToeStrategy = new BlockWinStrategy(board, gameMarker, playerMarker);
+        }
+        else if (gameLevel == 2){
+            ticTacToeStrategy = new BestOpenMoveStrategy(board, gameMarker, playerMarker);
+        }
+        else {
+            ticTacToeStrategy = new RandomMoveStrategy(board, gameMarker, playerMarker);
+        }
     }
 
     @Override

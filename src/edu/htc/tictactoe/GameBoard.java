@@ -22,7 +22,7 @@ public class GameBoard {
     {
         for(int i=1;i<=9;i++)
         {
-            openSquares.add(new Integer(i));
+            openSquares.add(i);
         }
         this.board = board;
     }
@@ -55,8 +55,18 @@ public class GameBoard {
         System.out.println();
     }
 
-
-    //Testing gameboard display
+    public char[] getSquaresForMarker(char playerMarker) {
+        char playerSquares[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == playerMarker) {
+                playerSquares[i] = board[i];
+            } else {
+                playerSquares[i] = ' ';
+            }
+        }
+        return playerSquares;
+    }
+        //Testing gameboard display
     public static void testGameBoardDisplay(){
         System.out.println();
         System.out.println("-------------------------------");
@@ -67,9 +77,24 @@ public class GameBoard {
 
         //testing the board after the markers
         System.out.println(" Testing display of Game Board after adding O in the top right, X in the middle right and O in the bottom left");
-        gameBoard.updateSquare(1,'O');
-        gameBoard.updateSquare(6,'X');
-        gameBoard.updateSquare(7,'O');
+        try {
+            gameBoard.updateSquare(1,'O');
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            gameBoard.updateSquare(6,'X');
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            gameBoard.updateSquare(7,'O');
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         System.out.println("End of testing display of the Game Board");
         gameBoard.display();
 
@@ -78,8 +103,8 @@ public class GameBoard {
 
         //Calling get open squares method to see which squares are open
         int[] openSquares1 = gameBoard.getOpenSquares();
-        for (int i = 0; i<openSquares1.length; i++){
-            System.out.println(openSquares1[i]);
+        for (int anOpenSquares1 : openSquares1) {
+            System.out.println(anOpenSquares1);
         }
     }
 
@@ -108,17 +133,18 @@ public class GameBoard {
 
 
     //update the squares method
-    public void updateSquare(int squareNum, char marker){
+    public void updateSquare(int squareNum, char marker) throws Exception{
+        if (squareNum < 1 || squareNum > 9){
+            throw new Exception("Invalid Square Number");
+        }
         board[squareNum - 1] = marker;
         openSquares.remove(new Integer(squareNum));
     }
 
     //Is Game won method
     public boolean isGameWon() {
-        for(int i=0; i<winCombinations.length; i++){
-            int[] combination = winCombinations[i];
-            if(board[combination[0]-1] == board[combination[1]-1] && board[combination[1]-1] == board[combination[2]-1])
-            {
+        for (int[] combination : winCombinations) {
+            if (board[combination[0] - 1] == board[combination[1] - 1] && board[combination[1] - 1] == board[combination[2] - 1]) {
                 return true;
             }
         }
@@ -130,17 +156,14 @@ public class GameBoard {
         int[] ret = new int[openSquares.size()];
         for (int i=0; i < ret.length; i++)
         {
-            ret[i] = openSquares.get(i).intValue();
+            ret[i] = openSquares.get(i);
         }
         return ret;
     }
 
     //Is Square Open
     public boolean isSquareOpen(int squareNum){
-        if(openSquares.contains(new Integer(squareNum))){
-            return true;
-        }
-        return false;
+        return openSquares.contains(squareNum);
     }
 
     public static void main(String args[])
