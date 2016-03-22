@@ -6,6 +6,11 @@ public class Main {
 
         TicTacToe game = new TicTacToe();
         game.playGame();
+        GameBoard board = new GameBoard();
+        board.testGameBoardDisplay();
+        board.testIsSquareOpen();
+
+
 
     }
 }
