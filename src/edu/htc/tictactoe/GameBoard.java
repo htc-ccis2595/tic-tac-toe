@@ -26,16 +26,7 @@ public class GameBoard {
         }
         this.board = board;
     }
-//    boolean error = true;
-//
-//    ArrayList<Integer> openSquares = new ArrayList<Integer>(9);
-//    {
-//        int i;
-//        for (i = 1; i < 10; i++) {
-//            openSquares.add(i);
-//        }
-//        //System.out.println(openSquares);
-//    }
+
 
 
     public static void display() {
@@ -123,16 +114,9 @@ public class GameBoard {
         for(int i=0; i<openSquares1.length; i++){
             System.out.println(openSquares1[i]);
         }
-
     }
 
 
-
-
-
-    public void isSquareOpen(){
-
-    }
 
     public static void testIsSquareOpen(){
 
@@ -152,13 +136,5 @@ public class GameBoard {
         if(error == false){
             System.out.println("Correct. All squares are open");
         }
-
-
     }
-
-
-
-
-
-
 }

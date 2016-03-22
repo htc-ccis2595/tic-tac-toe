@@ -10,6 +10,10 @@ public class Player {
     private char gameMarker;
     private int winCounter=0;
 
+    public Player(){
+
+    }
+
     public Player(String name, char gameMarker){
        this.name = name;
         this.gameMarker = gameMarker;
@@ -36,6 +40,12 @@ public class Player {
 
     public void setGameMarker(char gameMarker) {
         this.gameMarker = gameMarker;
+    }
+
+    public int getWinCounter(){
+        int winCounter = 0;
+        winCounter += addWin();
+        return winCounter;
     }
 
     public int getMove() {
